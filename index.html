@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حفظ الأيونات — صيغ المركّبات الأيونية</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#070b1a;--bg2:#121a3a;--card:rgba(255,255,255,.07);--card2:rgba(255,255,255,.12);--bd:rgba(255,255,255,.15);--tx:#f3f5ff;--mut:#a9b3d6;--gold:#f5c76a;--cyan:#5ad1ff;--vio:#8b7bff;--ok:#3ddc97;--bad:#ff6b7a;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box}
+@media (prefers-color-scheme:light){:root{--bg:#eef2ff;--bg2:#dbe4ff;--card:rgba(255,255,255,.72);--card2:rgba(255,255,255,.95);--bd:rgba(20,30,80,.14);--tx:#141a3a;--mut:#4a547d;--gold:#b7791f;--cyan:#0b7fb3;--vio:#5b4bd6}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Cairo,"Segoe UI",Tahoma,Arial,sans-serif;color:var(--tx);background:radial-gradient(circle at 85% -10%,var(--bg2),var(--bg) 65%) fixed;min-height:100vh;line-height:1.7;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:.35;z-index:-1;animation:fl 14s ease-in-out infinite alternate}
+.o1{width:340px;height:340px;background:var(--cyan);top:5%;right:-80px}
+.o2{width:380px;height:380px;background:var(--vio);bottom:-100px;left:-100px;animation-delay:-6s}
+@keyframes fl{to{transform:translate(-40px,60px) scale(1.2)}}
+.wrap{max-width:960px;margin:auto;padding:16px 14px 60px}
+header{text-align:center;padding:34px 10px 8px;animation:fd .8s both}
+h1{margin:0;font-size:clamp(2rem,6vw,3.2rem);font-weight:800;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--vio),var(--gold));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gr 8s linear infinite}
+@keyframes gr{to{background-position:300% 0}}
+header p{color:var(--mut);margin:4px 0 0}
+.credit{display:inline-block;margin-top:14px;padding:9px 20px;border:1px solid var(--gold);border-radius:40px;font-size:.92rem;color:var(--gold);background:var(--card);backdrop-filter:blur(10px);box-shadow:0 0 24px rgba(245,199,106,.15)}
+nav{display:flex;gap:6px;justify-content:safe center;margin:16px 0;padding:5px;border-radius:16px;background:var(--card);border:1px solid var(--bd);overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+.btn,nav button{font:inherit;font-weight:600;color:var(--tx);background:var(--card2);border:1px solid var(--bd);border-radius:14px;padding:9px 18px;cursor:pointer;transition:.3s;position:relative;overflow:hidden}
+.btn:hover,nav button:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 10px 24px rgba(90,209,255,.25)}
+.btn:active,nav button:active{transform:scale(.96)}
+.btn::after,nav button::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transition:.6s}
+.btn:hover::after,nav button:hover::after{left:140%}
+nav button.on,.pri{background:linear-gradient(135deg,var(--cyan),var(--vio));color:#fff;border-color:transparent}
+nav button{flex:0 0 auto;white-space:nowrap;padding:6px 12px;font-size:.88rem;border-radius:11px;border-color:transparent;background:transparent}
+nav button.on{border-color:transparent;background:linear-gradient(135deg,var(--cyan),var(--vio))}
+section{display:none}section.on{display:block;animation:fd .5s both}
+@keyframes fd{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.blk{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:18px;margin-bottom:22px;backdrop-filter:blur(10px)}
+.bh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+h2{margin:0;color:var(--gold);font-size:1.2rem}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;animation:fd .5s both}
+.fc{perspective:700px;height:106px;cursor:pointer}
+.fi{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.fc.flip .fi{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:16px;border:1px solid var(--bd);background:var(--card2);backface-visibility:hidden;transition:box-shadow .3s}
+.fc:hover .f{box-shadow:0 10px 26px rgba(245,199,106,.25)}
+.fc .b{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(90,209,255,.25),rgba(139,123,255,.28))}
+.sym{font-size:1.7rem;font-weight:800;direction:ltr;color:var(--cyan)}
+.ch{font-size:.85rem;color:var(--mut);direction:ltr}
+.hint{color:var(--mut);font-size:.88rem;text-align:center;margin:0 0 12px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.chip{font:inherit;font-size:.85rem;padding:5px 14px;border-radius:30px;border:1px dashed var(--cyan);background:transparent;color:var(--cyan);cursor:pointer;transition:.25s}
+.chip:hover{background:var(--cyan);color:#06202c}
+.tw{overflow-x:auto;border-radius:18px;border:1px solid var(--bd);animation:fd .5s both}
+table{width:100%;border-collapse:collapse;min-width:420px}
+th{padding:12px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--cyan),var(--vio))}
+td{padding:6px;text-align:center;border-top:1px solid var(--bd);transition:background .3s}
+tbody tr:nth-child(odd){background:var(--card)}
+tbody tr:hover td{background:rgba(90,209,255,.12)}
+.c{cursor:pointer;font-size:1.15rem}
+.c span{display:inline-block;padding:4px 14px;border-radius:10px;transition:filter .4s,background .3s}
+.c.hid span{filter:blur(9px);background:var(--card2);user-select:none}
+.ltr{direction:ltr;font-weight:800;color:var(--gold)}
+td:first-child .ltr{color:var(--cyan)}
+.q{background:var(--card);border:1px solid var(--bd);border-radius:24px;padding:26px 18px;text-align:center;backdrop-filter:blur(10px);animation:fd .4s both}
+.qt{color:var(--mut);margin-bottom:6px}
+.qb{font-size:2.3rem;font-weight:800;margin:8px 0 18px;direction:ltr;color:var(--gold)}
+.qb.ar{direction:rtl}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.opts{grid-template-columns:1fr}}
+.opt{font:inherit;font-size:1.1rem;color:var(--tx);background:var(--card2);border:1px solid var(--bd);border-radius:14px;padding:11px;cursor:pointer;transition:.25s;width:100%}
+.opt:hover:not(:disabled){transform:scale(1.04);border-color:var(--cyan)}
+.opt.sel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,199,106,.3)}
+.opt.ok{background:var(--ok);color:#06231a;border-color:var(--ok);animation:pop .4s}
+.opt.no{background:var(--bad);color:#2b0309;border-color:var(--bad);animation:sh .4s}
+@keyframes pop{50%{transform:scale(1.12)}}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.mt>div{display:grid;gap:9px;align-content:start}
+input.in{font:inherit;font-size:1.3rem;text-align:center;width:min(100%,340px);padding:12px;border-radius:14px;border:1px solid var(--bd);background:var(--card2);color:var(--tx);outline:none;transition:.3s}
+input.in:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(90,209,255,.22)}
+.bar{height:9px;border-radius:9px;background:var(--card);overflow:hidden;margin:0 0 8px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width .5s}
+.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:.9rem;margin-bottom:12px}
+.fb{min-height:28px;margin-top:14px;font-weight:800}
+.fb.ok{color:var(--ok)}.fb.no{color:var(--bad)}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.res h3{margin:10px 0 0;font-size:1.6rem}
+.ring{--p:0;width:150px;height:150px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--card2) 0);position:relative}
+.ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--bg2)}
+.ring b{position:relative;font-size:2rem;color:var(--gold)}
+.intro ul{list-style:none;padding:0;margin:14px 0;color:var(--mut)}
+footer{text-align:center;color:var(--mut);margin-top:40px;font-size:.85rem}
+sup,sub{font-size:.6em}
+@media(max-width:420px){nav{gap:2px}nav button{padding:6px 8px;font-size:.82rem}}
+@keyframes hbt{40%{transform:scale(1.6)}}
+#hr{display:inline-block;letter-spacing:2px}#hr.hb{animation:hbt .5s}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="wrap">
+<header>
+<h1>حفظ الأيونات</h1>
+<p>صيغ المركّبات الأيونية — الجدولان (2) و(3)</p>
+<div class="credit">إعداد: أنس نهاد محمود الجعل &nbsp;|&nbsp; بإشراف الأستاذ: نبيل شوقي ذياب بني عودة</div>
+</header>
+<nav id="nav">
+<button data-s="learn" class="on">📚 تعلّم</button>
+<button data-s="choose">✅ اختر</button>
+<button data-s="match">🔗 أصل</button>
+<button data-s="fill">✍ أكمل</button>
+<button data-s="final">🏆 النهائي</button>
+</nav>
+<section id="learn" class="on"></section>
+<section id="choose"><div id="cBox"></div></section>
+<section id="match"><div id="mBox"></div></section>
+<section id="fill"><div id="fBox"></div></section>
+<section id="final"><div id="finBox"></div></section>
+<section id="tq"><div id="tqBox"></div></section>
+<footer>إعداد أنس نهاد محمود الجعل — بإشراف أ. نبيل شوقي ذياب بني عودة</footer>
+</div>
+<script>
+const T2=[["Li","1+","ليثيوم"],["Na","1+","صوديوم"],["K","1+","بوتاسيوم"],["Mg","2+","مغنيسيوم"],["Ca","2+","كالسيوم"],["Ba","2+","باريوم"],["Al","3+","ألمنيوم"],["F","1-","فلوريد"],["Cl","1-","كلوريد"],["Br","1-","بروميد"],["I","1-","أيوديد"],["H","1-","هيدريد"],["O","2-","أكسيد"],["S","2-","كبريتيد"],["P","3-","فوسفيد"],["N","3-","نيتريد"]];
+const T3=[["NH₄","1+","أمونيوم"],["MnO₄","1-","برمنغنات"],["CN","1-","سيانيد"],["NO₃","1-","نترات"],["NO₂","1-","نتريت"],["HCO₃","1-","كربونات هيدروجينية"],["CH₃COO","1-","إيثانوات (أسيتات)"],["OH","1-","هيدروكسيد"],["ClO₃","1-","كلورات"],["SO₃","2-","كبريتيت"],["SO₄","2-","كبريتات"],["CrO₄","2-","كرومات"],["Cr₂O₇","2-","دايكرومات"],["C₂O₄","2-","أوكسالات"],["CO₃","2-","كربونات"],["PO₄","3-","فوسفات"]];
+const mk=L=>L.map(([s,c,n])=>({s,c,n}));
+const ITEMS={2:mk(T2),3:mk(T3)};
+const ALL=[...ITEMS[2],...ITEMS[3]];ALL.forEach((a,i)=>a.id=i);
+const sup=c=>(c[0]==="1"?"":c[0])+c[1];
+const fmt=a=>a.s+'<sup>'+sup(a.c)+'</sup>';
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+const $=id=>document.getElementById(id);
+const SEC=["learn","choose","match","fill","final","tq"];
+function tab(s){document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.s===s));SEC.forEach(x=>$(x).classList.toggle("on",x===s));scrollTo({top:0,behavior:"smooth"})}
+
+/* ===== تعلّم ===== */
+const mode={2:"cards",3:"cards"};
+$("learn").innerHTML=[2,3].map(t=>`<div class="blk"><div class="bh"><h2>الجدول (${t}): ${t==2?"رموز أيونات بعض العناصر وأسماؤها":"رموز بعض المجموعات الأيونية وأسماؤها"}</h2><div class="acts"><button class="btn" data-v="${t}">📋 عرض الجدول</button><button class="btn pri" data-q="${t}">🎯 اختبار الجدول ${t}</button></div></div><div id="v${t}"></div></div>`).join("");
+function render(t){const v=$("v"+t),b=document.querySelector(`[data-v="${t}"]`);
+if(mode[t]==="cards"){b.textContent="📋 عرض الجدول";
+v.innerHTML=`<p class="hint">اضغط على أي بطاقة لتقلبها</p><div class="grid">${ITEMS[t].map(a=>`<div class="fc"><div class="fi"><div class="f"><span>${a.n}</span></div><div class="b"><span class="sym">${fmt(a)}</span><span class="ch">شحنة ${a.c}</span></div></div></div>`).join("")}</div>`;
+v.querySelectorAll(".fc").forEach(c=>c.onclick=()=>c.classList.toggle("flip"))}
+else{b.textContent="🃏 عرض البطاقات";
+v.innerHTML=`<p class="hint">وضع التدريب: كل الخلايا مغبّشة — اضغط على خلية لتكشفها</p><div class="tools"><button class="chip" data-col="0">👁 الأيون</button><button class="chip" data-col="1">👁 الشحنة</button><button class="chip" data-col="2">👁 الاسم</button><button class="chip" data-all="1">إظهار الكل</button></div><div class="tw"><table><thead><tr><th>الأيون</th><th>الشحنة</th><th>الاسم</th></tr></thead><tbody>${ITEMS[t].map(a=>`<tr><td class="c hid" data-col="0"><span class="ltr">${fmt(a)}</span></td><td class="c hid" data-col="1"><span class="ltr">${a.c}</span></td><td class="c hid" data-col="2"><span>${a.n}</span></td></tr>`).join("")}</tbody></table></div>`;
+const tg=v.querySelector("[data-all]"),sync=()=>{tg.textContent=[...v.querySelectorAll("td.c")].every(x=>!x.classList.contains("hid"))?"إخفاء الكل":"إظهار الكل"};v.querySelectorAll(".c").forEach(c=>c.onclick=()=>{c.classList.toggle("hid");sync()});
+v.querySelectorAll("[data-col]").forEach(ch=>{if(ch.tagName==="BUTTON")ch.onclick=()=>{const cs=[...v.querySelectorAll(`td[data-col="${ch.dataset.col}"]`)];const hide=cs.every(x=>!x.classList.contains("hid"));cs.forEach(x=>x.classList.toggle("hid",hide));sync()}});
+tg.onclick=()=>{const cs=[...v.querySelectorAll("td.c")],hide=cs.every(x=>!x.classList.contains("hid"));cs.forEach(x=>x.classList.toggle("hid",hide));sync()}}}
+document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{const t=b.dataset.v;mode[t]=mode[t]==="cards"?"table":"cards";render(t)});
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{const t=+b.dataset.q;tab("tq");runQuiz($("tqBox"),ITEMS[t],"mixed","اختبار الجدول "+t,()=>tab("learn"))});
+render(2);render(3);
+
+/* ===== الاختبارات ===== */
+const START={choose:()=>runQuiz($("cBox"),ALL,"choose","اختر — الجدولان معًا"),match:()=>runQuiz($("mBox"),ALL,"match","أصِل — الجدولان معًا"),fill:()=>runQuiz($("fBox"),ALL,"fill","أكمل — الجدولان معًا"),final:()=>runQuiz($("finBox"),ALL,"mixed","الاختبار النهائي — الجدولان")};
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{tab(b.dataset.s);START[b.dataset.s]?.()});
+
+const norm=s=>s.replace(/[\u064B-\u0652\u0640]/g,"").replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/\s+/g," ").trim();
+const nrm=s=>s.replace(/[₀-₉]/g,m=>m.charCodeAt(0)-8320).replace(/⁺/g,"+").replace(/[⁻−–]/g,"-").replace(/²/g,"2").replace(/³/g,"3").replace(/[\s^]/g,"").toLowerCase();
+
+let HEARTS=true;try{HEARTS=localStorage.getItem("hearts")!=="0"}catch(e){}
+const saveH=()=>{try{localStorage.setItem("hearts",HEARTS?"1":"0")}catch(e){}};
+function runQuiz(box,list,md,title,back){
+const $=id=>box.querySelector("#"+id);const H=HEARTS;
+const chunk=(l,z=8)=>{const r=[];for(let i=0;i<l.length;i+=z)r.push(l.slice(i,i+z));return r};
+const C=(l=list)=>shuf(l).map(x=>({k:"c",x})),F=(l=list)=>shuf(l).map(x=>({k:"f",x})),M=(l=list,z=8)=>chunk(shuf(l),z).map(g=>({k:"m",g}));
+const mixed=()=>{const sh=shuf(list),a=Math.ceil(sh.length/3),d=sh.slice(a*2);return [...C(sh.slice(0,a)),...M(d,Math.ceil(d.length/Math.ceil(d.length/6))),...F(sh.slice(a,a*2))]};
+const st=md==="choose"?C():md==="fill"?F():md==="match"?M():mixed();
+const total=st.reduce((s,q)=>s+(q.k==="m"?q.g.length:1),0);
+const desc={choose:"اختيار من متعدد",match:"أصِل الاسم بالأيون",fill:"اكتب الإجابة بنفسك",mixed:"اختر ← أصِل ← أكمل"}[md];
+let i=0,sc=0,hp=3;
+const head=()=>`<div class="bar"><i style="width:${i/st.length*100}%"></i></div><div class="meta"><span>${title}</span><span>سؤال ${i+1} من ${st.length}</span><span>⭐ ${sc}</span>${H?`<span id="hr">${hearts()}</span>`:""}</div>`;
+const hearts=()=>"❤️".repeat(hp)+"🖤".repeat(3-hp);
+const lose=()=>{if(!H)return;hp--;const h=$("hr");if(h){h.textContent=hearts();h.classList.remove("hb");void h.offsetWidth;h.classList.add("hb")}};
+const adv=(p,d)=>{sc+=p;i++;setTimeout(hp<=0?over:show,d)};
+function over(){box.innerHTML=`<div class="q res"><div style="font-size:4rem">💔</div><h3>خسرت القلوب الثلاثة!</h3><p>أجبت عن ${i} من ${st.length} سؤال. سيبدأ الاختبار من جديد بأسئلة جديدة.</p><div class="row"><button class="btn pri" id="ag">🔄 أعد الاختبار</button>${back?'<button class="btn" id="bk">↩ رجوع</button>':""}</div></div>`;$("ag").onclick=()=>{runQuiz(box,list,md,title,back);$("go").click()};if(back)$("bk").onclick=back}
+box.innerHTML=`<div class="q intro"><h2>${title}</h2><ul><li>📝 ${desc}</li><li>${H?"❤️❤️❤️ لديك 3 قلوب: كل إجابة خاطئة تخسر قلبًا، وإذا خسرتها كلها يُعاد الاختبار":"♾ بدون قلوب: تقدر تغلط براحتك وتكمل الاختبار"}</li><li>🔢 عدد الأسئلة: ${st.length} (${total} درجة)</li><li>${md==="mixed"?"كل أيون يُسأل مرة واحدة فقط، والأسئلة موزّعة على: اختر ← أصِل ← أكمل":"الأسئلة تشمل كل عناصر "+(list===ALL?"الجدولين":"الجدول")}</li></ul><div class="row"><button class="btn ${H?"pri":""}" id="mh">❤️ بقلوب</button><button class="btn ${H?"":"pri"}" id="mn">♾ بدون قلوب</button></div><div class="row"><button class="btn pri" id="go">ابدأ ▶</button>${back?'<button class="btn" id="bk0">↩ رجوع</button>':""}</div></div>`;
+$("go").onclick=show;$("mh").onclick=()=>{HEARTS=true;saveH();runQuiz(box,list,md,title,back)};$("mn").onclick=()=>{HEARTS=false;saveH();runQuiz(box,list,md,title,back)};if(back)$("bk0").onclick=back;
+
+function show(){if(i>=st.length)return end();const q=st[i];({c:Qc,m:Qm,f:Qf})[q.k](q)}
+function Qc(q){const x=q.x,toName=Math.random()<.5;
+const opts=shuf([x,...shuf(ALL.filter(a=>a!==x)).slice(0,3)]);
+box.innerHTML=head()+`<div class="q"><div class="qt">${toName?"اختر اسم الأيون":"اختر رمز الأيون وشحنته"}</div><div class="qb ${toName?"":"ar"}">${toName?fmt(x):x.n}</div><div class="opts">${opts.map((o,k)=>`<button class="opt" data-k="${k}" ${toName?"":'style="direction:ltr"'}>${toName?o.n:fmt(o)}</button>`).join("")}</div></div>`;
+box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const ok=opts[b.dataset.k]===x;
+box.querySelectorAll(".opt").forEach(y=>{y.disabled=true;if(opts[y.dataset.k]===x)y.classList.add("ok")});if(!ok){b.classList.add("no");lose()}adv(ok?1:0,950)})}
+function Qm(q){const g=q.g,wrong=new Set();let sn=null,si=null,done=0;
+box.innerHTML=head()+`<div class="q"><div class="qt">أصِل بين الاسم والأيون: اضغط الاسم ثم الأيون المناسب</div><div class="mt"><div>${shuf(g).map(a=>`<button class="opt" data-s="n" data-id="${a.id}">${a.n}</button>`).join("")}</div><div>${shuf(g).map(a=>`<button class="opt" style="direction:ltr" data-s="i" data-id="${a.id}">${fmt(a)}</button>`).join("")}</div></div><div class="fb" id="fb"></div></div>`;
+box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(b.classList.contains("ok")||hp<=0)return;
+if(b.dataset.s==="n"){sn?.classList.remove("sel");sn=b}else{si?.classList.remove("sel");si=b}b.classList.add("sel");
+if(sn&&si){const ok=sn.dataset.id===si.dataset.id,a=sn,c=si;a.classList.remove("sel");c.classList.remove("sel");sn=si=null;const fb=$("fb");
+if(ok){a.classList.add("ok");c.classList.add("ok");done++;fb.className="fb ok";fb.textContent="صحيح ✔";if(done===g.length)adv(g.length-wrong.size,800)}
+else{wrong.add(a.dataset.id);[a,c].forEach(y=>{y.classList.add("no");setTimeout(()=>y.classList.remove("no"),500)});fb.className="fb no";fb.textContent="غير صحيح ✘ حاول مجددًا";lose();if(hp<=0)setTimeout(over,700)}}})}
+function Qf(q){const x=q.x,toName=Math.random()<.5;
+box.innerHTML=head()+`<div class="q"><div class="qt">${toName?"اكتب اسم هذا الأيون":"اكتب رمز الأيون مع شحنته (مثال: Na+ أو SO4 2-)"}</div><div class="qb ${toName?"ar":""}">${toName?fmt(x):x.n}</div><input class="in" id="ans" autocomplete="off" ${toName?"":'dir="ltr"'} placeholder="اكتب إجابتك"><div class="row"><button class="btn pri" id="ck">تحقق</button></div><div class="fb" id="fb"></div></div>`;
+const inp=$("ans");inp.focus();
+const check=()=>{if(inp.disabled)return;const v=inp.value;let ok;
+if(toName){const parts=x.n.split(/[()]/).map(p=>p.trim()).filter(Boolean);ok=norm(v)===norm(x.n)||parts.some(p=>norm(p)===norm(v))}
+else{const s=nrm(x.s),n=x.c[0],g=x.c[1],u=nrm(v);ok=[s+n+g,s+g+n,...(n==="1"?[s+g]:[])].includes(u)}
+inp.disabled=true;$("ck").disabled=true;const fb=$("fb");
+if(ok){fb.className="fb ok";fb.textContent="إجابة صحيحة ✔"}else{fb.className="fb no";fb.innerHTML="الإجابة الصحيحة: "+(toName?x.n:`<span style="direction:ltr;display:inline-block">${fmt(x)}</span>`)}
+if(!ok)lose();adv(ok?1:0,ok?1000:1900)};
+$("ck").onclick=check;inp.onkeydown=e=>{if(e.key==="Enter")check()}}
+function end(){const p=Math.round(sc/total*100);
+box.innerHTML=`<div class="q res"><div class="ring" style="--p:${p}"><b>${p}%</b></div><h3>${sc} من ${total}</h3><p>${p>=90?"ممتاز! 🏆 حفظك رائع":p>=60?"جيد جدًا 👏 كرّر لتتقن":"استمر بالتدريب 💪 ارجع لقسم تعلّم"}</p><div class="row"><button class="btn pri" id="ag">🔄 إعادة</button>${back?'<button class="btn" id="bk">↩ رجوع</button>':""}</div></div>`;
+$("ag").onclick=()=>runQuiz(box,list,md,title,back);if(back)$("bk").onclick=back}
+}
+START.choose();
+</script>
+</body>
+</html>
